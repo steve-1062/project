@@ -1,0 +1,140 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css"
+  rel="stylesheet"
+/>
+
+  <title>Agro</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+  <link href="{% static 'css/products.css' %}" rel="stylesheet" />
+
+
+
+</head>
+
+<body>
+    <div class="hero_area ">
+        <!-- header section strats -->
+        <header class="header_section">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+              <a class="navbar-brand" href="home.html">
+                <span>
+                 Agro
+                </span>
+              </a>
+              <div>
+                <a class="navbar-brand" href="cart">Cart</a>
+              </div>
+              <div class="" id="">
+               
+                <div class="User_option">
+                  <form class="form-inline my-2  mb-3 mb-lg-0">
+                    <input type="search" placeholder="Search" />
+                    <button class="btn   my-sm-0 nav_search-btn" type="submit"></button>
+                  </form>
+                </div>
+                
+                <div class="custom_menu-btn">
+                    <button onclick="openNav()">
+                      <span class="s-1"> </span>
+                      <span class="s-2"> </span>
+                      <span class="s-3"> </span>
+                    </button>
+                  </div>
+                  </div>
+                  </nav>
+                  </div>
+                  </header>
+
+                  <div class="cardbox">
+                   <!-- end header section -->
+                   {% for item in products %}
+
+                   <div class="card">
+                    <img src="../{{item.product_img}}" class="card-img-top" alt="Fissure in Sandstone"/>
+                    <div class="card-body">
+                      <h1>{{item.filename}}</h1>
+                      <h5 class="card-title">{{item.product_name}}</h5>
+                      <h6 class="card-title">${{item.price}}</h6>
+                      <a href="#!" class="btn btn-primary">Button</a>
+                      <input class="btn btn-primary" type="button" id="addtocart" onclick="addToCart('{{ item.product_id }}')" value="Add to Cart">
+                    </div>
+                  </div>
+                 
+                 {% endfor %}
+                 </div>
+                 <script>
+                  function addToCart(itm) {
+                      //add itm to window.Cookies.cart
+                      var cart = readCookie("cart")
+                      console.log(itm)
+                      if (cart == "") {
+                          let arr = []
+                          var json_str = JSON.stringify(arr);
+                          document.cookie = "cart=" + json_str;
+                      }
+                      var json_str = readCookie('cart');
+                      var cart = JSON.parse(json_str);
+                      cart.push(itm)
+                      var json_str = JSON.stringify(cart);
+                      document.cookie = "cart=" + json_str;
+                      console.log(cart)
+                          
+                  }
+
+                  function readCookie(cname) {
+                      let name = cname + "=";
+                      let decodedCookie = decodeURIComponent(document.cookie);
+                      let ca = decodedCookie.split(';');
+                      for (let i = 0; i < ca.length; i++) {
+                          let c = ca[i];
+                          while (c.charAt(0) == ' ') {
+                              c = c.substring(1);
+                          }
+                          if (c.indexOf(name) == 0) {
+                              return c.substring(name.length, c.length);
+                          }
+                      }
+                      return "";
+                  }
+              </script>
+</body>
+</html>

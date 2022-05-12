@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+  <title>Agro</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css' %}" />
+
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+
+  <link href="{% static 'css/users.css' %}" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="hero_area ">
+        <!-- header section strats -->
+        <header class="header_section">
+          <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+              <a class="navbar-brand" href="home.html">
+                <span>
+                 Agro
+                </span>
+              </a>
+              <div class="" id="">
+                <div class="User_option">
+                  <form class="form-inline my-2  mb-3 mb-lg-0">
+                    <input type="search" placeholder="Search" />
+                    <button class="btn   my-sm-0 nav_search-btn" type="submit"></button>
+                  </form>
+                </div>
+                <div class="custom_menu-btn">
+                    <button onclick="openNav()">
+                      <span class="s-1"> </span>
+                      <span class="s-2"> </span>
+                      <span class="s-3"> </span>
+                    </button>
+                  </div>
+                  </div>
+                  </nav>
+                  </div>
+                  </header>
+                   <!-- end header section -->
+                  {% if prod %}
+                  <p>products</p>
+                  {% else %}
+                  <p>no products</p>
+                  {%  endif %}
+                   {% for item in prod %}
+                  <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <div class="card-body">
+                      <h1>{{ item.price }}</h1>
+                      <h2>{{item.product_name}}</h2>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                  {% endfor %}
+</body>
+</html>
